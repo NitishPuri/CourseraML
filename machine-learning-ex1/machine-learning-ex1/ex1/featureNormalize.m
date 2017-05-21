@@ -27,12 +27,15 @@ sigma = zeros(1, size(X, 2));
 %       
 
 
-
-
-
-
-
-
+% sizeX = size(X)
+mu = mean(X);
+sigma = std(X);
+% sizeMu = size(mu)
+X = bsxfun(@minus, X, mu);
+% sizeX = size(X)
+% sizeStd = size(sigma)
+X = bsxfun(@rdivide, X, sigma);
+% sizeX = size(X)
 
 % ============================================================
 
