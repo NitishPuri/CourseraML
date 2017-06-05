@@ -37,11 +37,17 @@ grad = zeros(size(theta));
 %
 
 
+% selector is a vector of size(theta) in the form [0 1 1 1...]
+% This makes sure that we don't regularise the theta0 term
+selector = ones(size(theta));
+selector(1) = 0;
 
 
+h = sigmoid(X*theta);
 
+J = (1/m)*sum(-1*y.*log(h) - (1 - y).*log(1 - h)) + (lambda/(2*m))*sum((theta.*selector).^2);
 
-
+grad = (1/m)*(X'*(h - y)) + (lambda/m)*(theta.*selector);
 
 
 
