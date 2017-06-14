@@ -62,22 +62,36 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%% Feedforward
+% Add constant/bias node to first layer
+X = [ones(m, 1) X];
 
+% Calculate activation for second layer
+a2 = sigmoid(X*Theta1');
+% Add constant/bias node to second layer
+a2 = [ones(m,1) a2];
 
+% Calculate activation for third layer
+a3 = sigmoid(a2*Theta2');
 
+% Number of output nodes for final layer = number of classes.
+k = size(Theta2, 1);
 
+% Empty matrix for converting output to one-hot format.
+yt = zeros(m, k);
 
+% Convert output to one-hot format
+for i = 1:k
+    yt(: , i) = (y==i);
+end 
 
+% Calculate unregularized cost
+J = (-1/m)*sum((yt.*log(a3) + (1 - yt).*log(1 - a3))(:));
 
+% Regularzation
+JR = (lambda/(2*m))*(sum((Theta1(:, 2:size(Theta1, 2)).^2)(:)) + sum((Theta2(:, 2:size(Theta2, 2)).^2)(:)) );
 
-
-
-
-
-
-
-
-
+J += JR;
 
 
 % -------------------------------------------------------------
