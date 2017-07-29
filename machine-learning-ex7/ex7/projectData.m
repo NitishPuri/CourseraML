@@ -18,8 +18,15 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% m = Number of samples
+% n = number of input dimensions
+% k = number of reduced dimensions
 
-
+for i = 1:K
+    z = bsxfun(@times, X, U(:, i)');    
+    % z = X*U(:, i);    
+    Z(:, i) = sum(z')';
+end
 
 % =============================================================
 

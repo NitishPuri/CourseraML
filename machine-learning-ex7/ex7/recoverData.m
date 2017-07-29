@@ -22,6 +22,11 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               
 
 
+for i = 1:size(U, 1)
+    x_i = Z*U(i, 1:K)';
+    X_rec(:, i) = x_i;
+end
+% X_rec = bsxfun(@times, Z, U_reduce');
 
 % =============================================================
 
