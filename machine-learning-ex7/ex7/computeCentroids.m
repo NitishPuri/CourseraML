@@ -26,12 +26,15 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+% clusterMembers = find(idx==1);
+% mean(X(clusterMembers, :))
 
+% size(centroids(1, :))
 
-
-
-
-
+for i = 1:K
+    clusterMembers = find(idx==i);
+    centroids(i, :) = mean(X(clusterMembers, :));
+end
 
 % =============================================================
 
