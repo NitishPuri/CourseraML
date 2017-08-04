@@ -44,9 +44,9 @@ J = (1/2)*sum((((X*Theta' - Y).*R).^2)(:));
 J_reg = (lambda/2)*(sum((Theta.^2)(:))  + sum((X.^2)(:)) );
 J = J + J_reg;
 
-X_grad = ((X*Theta' - Y).*R)*Theta;
+X_grad = ((X*Theta' - Y).*R)*Theta + lambda*X;
 
-Theta_grad = ((X*Theta' - Y).*R)'*X;
+Theta_grad = ((X*Theta' - Y).*R)'*X + lambda*Theta;
 
 % =============================================================
 
